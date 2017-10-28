@@ -1,10 +1,10 @@
 {
-    "name": "steven/yii2_access_log",
+    "name": "cornivy/yii2_access_log",
     "description": "yii2 access log",
     "type": "library",
     "authors": [
         {
-            "name": "steven",
+            "name": "cornivy",
             "email": "546427000@qq.com"
         }
     ],
