@@ -1,0 +1,19 @@
+{
+    "name": "steven/yii2_access_log",
+    "description": "yii2 access log",
+    "type": "library",
+    "authors": [
+        {
+            "name": "steven",
+            "email": "546427000@qq.com"
+        }
+    ],
+	"require": {
+        "yiisoft/yii2": "~2.0.7"
+    },
+	"autoload": {
+		"psr-4": {
+			"AccessLog\\report\\": "lib/"
+		}
+	}
+}
