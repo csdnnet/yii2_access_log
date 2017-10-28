@@ -15,5 +15,6 @@
 		"psr-4": {
 			"AccessLog\\report\\": "lib/"
 		}
-	}
+	},
+	"minimum-stability": "dev"
 }
