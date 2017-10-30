@@ -2,22 +2,22 @@
     "name": "cornivy/yii2_access_log",
     "description": "yii2 access log",
     "type": "yii2-extension",
-	"version": "0.0.1",
-	"license": "BSD-3-Clause",
-	"minimum-stability": "dev",
+    "version": "0.0.1",
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "cornivy",
             "email": "546427000@qq.com"
         }
     ],
-	"require": {
-		"php": ">=5.3.3",
+    "require": {
+        "php": ">=5.3.3",
         "yiisoft/yii2": "2.*"
     },
-	"autoload": {
-		"psr-4": {
-			"AccessLog\\report\\": "src/"
-		}
-	}
+    "autoload": {
+        "psr-4": {
+            "AccessLog\\report\\": "src/"
+        }
+    }
 }
