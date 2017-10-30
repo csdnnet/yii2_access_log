@@ -33,7 +33,7 @@ class PlatformLogReport extends Event {
         $module = $controller->module;
         $action_id = (isset($module->id) ? $module->id : 'default') . "/" . $controller->id . "/" . $action->id;
         $result = $actionEvent->result;
-        $report = new CPlatformLogReport();
+        $report = new PlatformLogReport();
         $report->report($action_id, $result);
     }
 
