@@ -175,7 +175,7 @@ class PlatformLogReport extends Event {
         $actionlog[] = json_encode($this->getReportPosts());
         $actionlog[] = json_encode($this->getReportGets());
         $actionlog[] = json_encode($cookies);
-        $actionlog[] = is_array($result) ? json_encode($result) : $result;
+        $actionlog[] = is_array($report_result) ? json_encode($report_result) : $report_result;
         return $actionlog;
     }
 
