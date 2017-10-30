@@ -90,6 +90,10 @@ class PlatformLogReport extends Event {
         return $ip;
     }
 
+    public function getRequestType() {
+        return \Yii::$app->request->method;
+    }
+
     public function getReportCookies() {
         return Yii::$app->request->getCookies()->toArray();
     }
@@ -158,6 +162,7 @@ class PlatformLogReport extends Event {
         $actionlog[] = $this->getDeviceType();                                                 //终端类型
         $actionlog[] = time();
         $actionlog[] = microtime(TRUE) - YII_BEGIN_TIME;
+        $actionlog[] = $this->getRequestType();
         $actionlog[] = json_encode($this->getReportPosts());
         $actionlog[] = json_encode($this->getReportGets());
         $actionlog[] = json_encode($cookies);
