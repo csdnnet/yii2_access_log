@@ -183,7 +183,7 @@ class PlatformLogReport extends Event {
      * @return type log
      */
     public function report($action_id, $result) {
-        $this->beforeReport();
+        $this->beforeReport($action_id, $result);
         try {
             $actionlog = $this->getReportData($action_id, $result);
             if (!is_array($actionlog)) {
