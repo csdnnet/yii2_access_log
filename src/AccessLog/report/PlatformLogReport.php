@@ -165,11 +165,20 @@ class PlatformLogReport extends Event {
         return $actionlog;
     }
 
+    public function beforeReport($action_id, $result) {
+        return true;
+    }
+
+    public function afterReport($actionlog) {
+        return true;
+    }
+
     /**
      * 记录访问日志
      * @return type log
      */
     public function report($action_id, $result) {
+        $this->beforeReport();
         try {
             $actionlog = $this->getReportData($action_id, $result);
             if (!is_array($actionlog)) {
@@ -178,6 +187,7 @@ class PlatformLogReport extends Event {
             $logmsg = implode(chr(1), $actionlog);
             $file = $this->getPlatformlogFile();
             file_put_contents($file, $logmsg . "\n", FILE_APPEND);
+            $this->afterReport($actionlog);
         } catch (\Exception $exc) {
             Yii::error($exc->getMessage(), "log_report");
         }
