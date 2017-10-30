@@ -2,6 +2,9 @@
     "name": "cornivy/yii2_access_log",
     "description": "yii2 access log",
     "type": "yii2-extension",
+	"version": "0.0.1",
+	"license": "BSD-3-Clause",
+	"minimum-stability": "dev",
     "authors": [
         {
             "name": "cornivy",
@@ -9,12 +12,12 @@
         }
     ],
 	"require": {
+		"php": ">=5.3.3",
         "yiisoft/yii2": ">=2.0.0"
     },
 	"autoload": {
 		"psr-4": {
 			"AccessLog\\report\\": "src/"
 		}
-	},
-	"minimum-stability": "dev"
+	}
 }
