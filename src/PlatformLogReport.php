@@ -43,7 +43,7 @@ class PlatformLogReport extends Event {
         $action_id = (isset($module->id) ? $module->id : 'default') . "/" . $controller->id . "/" . $action->id;
         $result = $actionEvent->result;
         $report = self::getInstance();
-        $report->report($action_id, $result);
+        $report->reportPrepare($action_id, $result);
     }
 
     /**
@@ -187,24 +187,29 @@ class PlatformLogReport extends Event {
         return true;
     }
 
-    /**
-     * 记录访问日志
-     * @return type log
-     */
-    public function report($action_id, $result) {
-        $this->beforeReport($action_id, $result);
+    public function reportPrepare($action_id, $result) {
         try {
+            $this->beforeReport($action_id, $result);
             $actionlog = $this->getReportData($action_id, $result);
-            if (!is_array($actionlog)) {
-                throw new \Exception("action log must be a array!");
-            }
-            $logmsg = implode(chr(1), $actionlog);
-            $file = $this->getPlatformlogFile();
-            file_put_contents($file, $logmsg . "\n", FILE_APPEND);
+            $this->report($actionlog);
             $this->afterReport($actionlog);
         } catch (\Exception $exc) {
             Yii::error($exc->getMessage(), "log_report");
         }
+    }
+
+    /**
+     * 记录访问日志
+     * @return type log
+     */
+    public function report($actionlog) {
+        if (!is_array($actionlog)) {
+            throw new \Exception("action log must be a array!");
+        }
+        $logmsg = implode(chr(1), $actionlog);
+        $file = $this->getPlatformlogFile();
+        file_put_contents($file, $logmsg . "\n", FILE_APPEND);
+        $this->afterReport($actionlog);
     }
 
     /**
