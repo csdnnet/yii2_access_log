@@ -23,6 +23,15 @@ defined('SEXUNUSUAL_ID') or define('SEXUNUSUAL_ID', 0); //unknown
 
 class PlatformLogReport extends Event {
 
+    private static $instance = null;
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new PlatformLogReport();
+        }
+        return self::$instance;
+    }
+
     /**
      * 记录访问日志入口
      * @param type $actionEvent
@@ -33,7 +42,7 @@ class PlatformLogReport extends Event {
         $module = $controller->module;
         $action_id = (isset($module->id) ? $module->id : 'default') . "/" . $controller->id . "/" . $action->id;
         $result = $actionEvent->result;
-        $report = new PlatformLogReport();
+        $report = self::getInstance();
         $report->report($action_id, $result);
     }
 
