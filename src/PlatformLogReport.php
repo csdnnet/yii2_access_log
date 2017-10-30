@@ -156,7 +156,7 @@ class PlatformLogReport extends Event {
             if ($r && isset($r['iRet'])) {
                 $status = $r['iRet'];
                 $report_result = $result;
-            } elseif (strlen($result < 50)) {
+            } elseif (strlen($result) < 50) {
                 $report_result = $result;
             }
         } catch (\Exception $ex) {
