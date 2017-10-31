@@ -104,7 +104,12 @@ class PlatformLogReport extends Event {
     }
 
     public function getReportCookies() {
-        return Yii::$app->request->getCookies()->toArray();
+        $cookies = Yii::$app->request->getCookies()->getIterator();
+        $cookie = [];
+        foreach ($cookies as $key => $value) {
+            $cookie[$value->name] = $value->value;
+        }
+        return $cookie;
     }
 
     /**
@@ -169,12 +174,12 @@ class PlatformLogReport extends Event {
         $actionlog[] = $action_id;                                              //action id
         $actionlog[] = $status;                                                 //返回码
         $actionlog[] = $this->getDeviceType();                                                 //终端类型
-        $actionlog[] = time();
+        $actionlog[] = time();                                                              //5
         $actionlog[] = microtime(TRUE) - YII_BEGIN_TIME;
         $actionlog[] = $this->getRequestType();
         $actionlog[] = json_encode($this->getReportPosts());
         $actionlog[] = json_encode($this->getReportGets());
-        $actionlog[] = json_encode($cookies);
+        $actionlog[] = json_encode($cookies);                                       //10
         $actionlog[] = is_array($report_result) ? json_encode($report_result) : $report_result;
         return $actionlog;
     }
