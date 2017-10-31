@@ -1,5 +1,6 @@
 # yii2_access_log
 yii2 framework access log module
+v1.0.2
 Yii2 框架集成日志上报组件
 
 1、composer安装第三方扩展：composer require cornivy/yii2_access_log:"dev-master"
