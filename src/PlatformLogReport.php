@@ -157,7 +157,14 @@ class PlatformLogReport extends Event {
         $status = self::SPECIAL_STATUS_FOR_PAGE;
         $report_result = '';
         try {
-            $r = json_decode($result, true);
+            if ($result instanceof \yii\web\Response) {
+                $result = $result->data;
+            }
+            if (is_array($result)) {
+                $r = $result;
+            } else {
+                $r = json_decode($result, true);
+            }
             if ($r && isset($r['iRet'])) {
                 $status = $r['iRet'];
                 $report_result = $result;
